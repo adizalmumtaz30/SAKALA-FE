@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* Token semantik SAKALA FE (DESIGN-TOKENS.md v1.0). Dark = default. */
+:root {
+  color-scheme: dark;
+  --background: #0d1717;
+  --surface: #172321;
+  --surface-raised: #1d2b28;
+  --surface-subtle: #202f2c;
+  --foreground: #e8eee9;
+  --foreground-muted: #a9b8b1;
+  --border: #34423f;
+  --border-strong: #656f6d;
+  --brand: #55b8a5;
+  --brand-hover: #70c9b7;
+  --brand-pressed: #3e9d8c;
+  --brand-tint: #203c36;
+  --on-brand: #0d1717;
+  --accent-metal: #c6a75e;
+  --accent-metal-text: #c6a75e;
+  --focus-ring: #70c9b7;
+  --link: #70c9b7;
+  --status-error: #fb7185;
+  --status-warning: #fbbf24;
+  --status-preview: #38bdf8;
+  --status-success: #4ade80;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --shadow-focus: 0 0 0 3px rgba(85, 184, 165, 0.32);
+  --motion-fast: 120ms;
+  --motion-normal: 200ms;
+  --motion-slow: 320ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --radius: 0.75rem;
+  --radius-sm: 0.5rem;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --background: #f6f2e9;
+  --surface: #fffcf6;
+  --surface-raised: #ffffff;
+  --surface-subtle: #eee9de;
+  --foreground: #202923;
+  --foreground-muted: #5e6962;
+  --border: #ded8cb;
+  --border-strong: #959188;
+  --brand: #176b61;
+  --brand-hover: #12584f;
+  --brand-pressed: #0e4942;
+  --brand-tint: #e1f0e9;
+  --on-brand: #fffcf6;
+  --accent-metal: #9a762d;
+  --accent-metal-text: #8f6e2a;
+  --focus-ring: #176b61;
+  --link: #12584f;
+  --status-error: #b4233c;
+  --status-warning: #9a5b00;
+  --status-preview: #0369a1;
+  --status-success: #18794e;
+  --shadow-sm: 0 1px 3px rgba(32, 41, 35, 0.07);
+  --shadow-md: 0 4px 16px rgba(32, 41, 35, 0.09);
+  --shadow-focus: 0 0 0 3px rgba(23, 107, 97, 0.22);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-raised: var(--surface-raised);
+  --color-subtle: var(--surface-subtle);
+  --color-fg: var(--foreground);
+  --color-muted: var(--foreground-muted);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-brand: var(--brand);
+  --color-brand-tint: var(--brand-tint);
+  --color-on-brand: var(--on-brand);
+  --color-metal: var(--accent-metal-text);
+  --color-ok: var(--status-success);
+  --color-warn: var(--status-warning);
+  --color-err: var(--status-error);
+  --font-sans: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, Menlo, monospace;
+}
+
+html { background: var(--background); }
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  line-height: 1.55;
+  transition: background-color var(--motion-normal) var(--ease-out), color var(--motion-normal) var(--ease-out);
+}
+.num { font-variant-numeric: tabular-nums; }
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--shadow-focus);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 1ms !important; transition-duration: 1ms !important; scroll-behavior: auto !important; }
+}
