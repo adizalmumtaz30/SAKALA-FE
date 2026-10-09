@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { CalendarClock } from "lucide-react";
 import { ALL_ITEMS } from "@/components/shell/nav";
 
-const PATHS = ALL_ITEMS.flatMap((i) => [i.href, ...(i.children?.map((c) => c.href) ?? [])]).filter((p) => p !== "/" && p !== "/menu");
+const PATHS = ALL_ITEMS.flatMap((i) => [i.href, ...(i.children?.map((c) => c.href) ?? [])]).filter((p) => !["/", "/menu", "/guru", "/mapel", "/kelas"].includes(p));
 
 export function generateStaticParams() {
   return PATHS.map((p) => ({ slug: p.split("/").filter(Boolean) }));
