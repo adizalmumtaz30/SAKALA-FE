@@ -24,6 +24,7 @@ export type Config = {
 };
 
 const str = (v: unknown) => (v == null ? "" : String(v));
+const friendly = (e: { code?: string; message: string }) => (e.code === "23505" ? "Data dengan nama atau kode yang sama sudah ada." : e.code === "23503" ? "Data ini masih dipakai oleh data lain." : e.message);
 
 export function MasterData({ kind }: { kind: Kind }) {
   const cfg: Config = CONFIGS[kind];
@@ -78,12 +79,12 @@ export function MasterData({ kind }: { kind: Kind }) {
     if (!sb || !k.schoolId) return "Konteks sekolah belum siap.";
     if (id) {
       const r = await sb.from(cfg.table).update(vals).eq("id", id);
-      if (r.error) return r.error.message;
+      if (r.error) return friendly(r.error);
     } else {
       const base: Record<string, unknown> = cfg.scope === "school" ? { school_id: k.schoolId } : { school_id: k.schoolId, academic_year_id: k.yearId };
       const extra = cfg.derive ? cfg.derive(vals, rows ?? []) : {};
       const r = await sb.from(cfg.table).insert({ ...base, ...vals, ...extra });
-      if (r.error) return r.error.message;
+      if (r.error) return friendly(r.error);
     }
     await reload();
     toast(id ? `${cfg.noun} diperbarui` : `${cfg.noun} ditambahkan`);
@@ -105,7 +106,7 @@ export function MasterData({ kind }: { kind: Kind }) {
     if (!sb) return;
     const r = await sb.from(cfg.table).delete().eq("id", row.id);
     setDel(null);
-    if (r.error) { toast(`Gagal menghapus: ${r.error.message}`); return; }
+    if (r.error) { toast(`Gagal menghapus: ${friendly(r.error)}`); return; }
     await reload();
     toast(`${cfg.noun} dihapus`, async () => {
       const back = await sb.from(cfg.table).insert(row);
