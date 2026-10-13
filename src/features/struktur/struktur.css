@@ -1,0 +1,13 @@
+.sl { display: grid; grid-template-columns: 52px 1fr auto auto; gap: 8px 14px; align-items: center; padding: 8px 4px; border-top: 1px solid var(--hl); min-height: 56px; }
+.sl .jk { font: 700 20px/24px var(--font-mono); color: var(--ac); text-align: center; }
+.sl .jk.dim { color: var(--t3); }
+.ty { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 99px; font: 500 13px/18px var(--font-sans); background: color-mix(in srgb, currentColor 14%, transparent); }
+.ty.t { color: var(--ac); } .ty.b { color: var(--wn); } .ty.a { color: var(--in); }
+.cp { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.cp .card { padding: 16px; } .cp b { display: block; font: 700 28px/32px var(--font-sans); font-variant-numeric: tabular-nums; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.chk { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.chk label { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border-radius: 99px; background: var(--s2); border: 1px solid var(--hl); cursor: pointer; }
+.chk input { accent-color: var(--ac); width: 18px; height: 18px; }
+.pv { max-height: 22vh; overflow: auto; border-radius: 14px; background: var(--s2); padding: 8px 12px; margin: 8px 0; font-size: 13px; line-height: 20px; }
+@media (max-width: 767px) { .sl { grid-template-columns: 44px 1fr auto; } .sl .ty { grid-column: 2; justify-self: start; } .row2 { grid-template-columns: 1fr; } }
